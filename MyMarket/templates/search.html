@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block HeadContent %}
+    <link rel="stylesheet" href="{% static 'stylesheets/build/search.css' %}" />
+{% endblock HeadContent %}
+{% block BodyContent %}
+<div class='wrapper'>
+    {% for gig in gigs %}
+        <div class='result-card'>
+            <div class='image-wrapper'><img src = {{gig.picture.url}} /></div> 
+            <div class='detail-wrapper'>
+                <h2><a href="{% url 'gig-detail' gig.id %}">{{gig.title}}</a></h2>
+                <div>{{gig.description|truncatechars:350}}</div>
+            </div>
+            <span>Added On: {{gig.createdAt}}</span>
+        </div>
+    {% endfor %}
+<div>
+<script src="{% static 'js/search.js' %}"></script>
+{% endblock BodyContent %}

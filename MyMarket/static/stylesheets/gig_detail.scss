@@ -1,0 +1,15 @@
+.wrapper{
+    display: grid;
+    margin: 4rem 10vw;
+    align-items: center;
+    justify-content: center;
+    .detail-container{
+        // border: 1px solid black;
+        .title-wrapper{
+            text-align: center;
+        }
+        div{
+            padding: 1rem;
+        }
+    }
+} 

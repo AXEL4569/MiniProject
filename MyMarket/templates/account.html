@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% load static %} {% block HeadContent %}
+<link rel="stylesheet" href="{% static 'stylesheets/build/account.css' %}" />
+{% endblock HeadContent %} {% block BodyContent %}
+<div class="wrapper">
+    {% if profiles %}
+    {% for profile in profiles %}
+    <section>
+        <label>
+          {% if profile.avatar.url %}
+          <img src="{{profile.avatar.url}}" id = 'current-avatar' />
+          {% else %}
+          <img src="{% static 'assets/default_avatar.png' %}" id = 'current-avatar' />
+          {% endif %}
+        </label>
+        <div class="about">
+          {{profile.about}}
+        </div>
+    </section>
+    {% endfor %}
+    {% else %}
+    <section>
+        <label>
+          <img src="{% static 'assets/default_avatar.png' %}" id = 'current-avatar' />
+        </label>
+    </section>
+    {% endif %}
+    <a href="{% url 'profile' %}">Edit Profile</a>
+    <div>
+        <a href="{% url 'add-gig' %}">Add a New Gig</a>
+    </div>
+    {% for gig in gigs %}
+        <div class='result-card'>
+            <div class='image-wrapper'><img src = {{gig.picture.url}} /></div> 
+            <div class='detail-wrapper'>
+                <h2><a href="{% url 'edit-gig' gig.id %}">{{gig.title}}</a></h2>
+                <div>{{gig.description|truncatechars:350}}</div>
+            </div>
+            <span>Added On: {{gig.createdAt}}</span>
+        </div>
+    {% endfor %}
+</div>
+<script src="{% static 'js/account.js' %}"></script>
+{% endblock BodyContent %}

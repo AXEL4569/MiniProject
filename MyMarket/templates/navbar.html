@@ -1,0 +1,35 @@
+{% load static %}
+<!--navbar-->
+<header class="header" id="header">
+    <nav class="navbar container">
+       <a href="{% url 'home' %}" class="brand"><img class="logo" src="{% static 'assets/logo.png' %}"></a>
+       <div class="burger" id="burger">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+       </div>
+       <span class="overlay"></span>
+       <div class="menu" id="menu">
+            {% if user.is_authenticated %}
+          <ul class="menu-inner">
+             <li class="menu-item"><a class="menu-link" href="{% url 'home' %}">Home</a></li>
+             <li class="menu-item"><a class="menu-link" href="{% url 'my-account' %}">My Account</a></li>
+             <li class="menu-item"><a class="menu-link" href="{% url 'sign-out' %}">Sign Out</a></li>
+          </ul>
+          {% else %}
+          <ul class="menu-inner">
+            <li class="menu-item"><a class="menu-link" href="{% url 'home' %}">Home</a></li>
+            <li class="menu-item"><a class="menu-link" href="{% url 'sign-in' %}">Sign In</a></li>
+            <li class="menu-item"><a class="menu-link" href="{% url 'sign-up' %}">Sign Up</a></li>
+         </ul>
+          {% endif %}
+       </div>
+       <button><i class="bx bx-search search-toggle"></i></button>
+       <form class="search-block" method="get" action="{% url 'search' %}">
+          <span><i class="bx bx-arrow-back search-cancel"></i></span>
+          <input type="search" name="q" class="search-input" placeholder="Search here..." autofocus>
+       </form>
+    </nav>
+ </header>
+ <div class="spacer"></div>
+<script src="{% static 'js/navbar.js' %}"></script>

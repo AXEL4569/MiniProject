@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% load static %} {% block HeadContent %}
+<link rel="stylesheet" href="{% static 'stylesheets/build/profile.css' %}" />
+{% endblock HeadContent %} {% block BodyContent %}
+<div class="wrapper">
+    <!--<h1>{% for message in messages %}{{message}}{% endfor %}</h1>-->
+    {% if userProfile %}
+    {% for profile in userProfile %}
+    <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>
+          {% if profile.avatar.url %}
+          <img src="{{profile.avatar.url}}" id = 'current-avatar' onchange="loadFile(event)" />
+          {% else %}
+          <img src="{% static 'assets/default_avatar.png' %}" id = 'current-avatar' />
+          {% endif %}
+          <input type="file" name="avatar" style="display: none" accept="image/*" onchange="loadFile(event)" />
+        </label>
+        <textarea
+          placeholder="Tell us more about yourself"
+          name = "about"
+          class="about"
+        >{{profile.about}}</textarea></br>
+        <input type="submit" value="Save Profile"/>
+    </form>
+    {% endfor %}
+    {% else %}
+    <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>
+          <img src="{% static 'assets/default_avatar.png' %}" id = 'current-avatar' />
+          <input type="file" name="avatar" style="display: none" accept="image/*" onchange="loadFile(event)"/>
+        </label>
+        <textarea
+          placeholder="Tell us more about yourself"
+          name = "about"
+          class="about"
+        ></textarea></br>
+        <input type="submit" value="Save Profile"/>
+    </form>
+    {% endif %}
+    <a href="{% url 'my-account' %}">Do This Later?</a>
+</div>
+<script src="{% static 'js/profile.js' %}"></script>
+
+{% endblock BodyContent %}

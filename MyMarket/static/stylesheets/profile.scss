@@ -1,0 +1,51 @@
+.wrapper{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+    text-align: center;
+    form{
+        label{
+            display: flex;
+            width: inherit;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            &:hover{
+                cursor: pointer;
+            }
+            img{
+                border-radius: 50%;
+                height: 20rem;
+                width: 20rem;
+            }      
+        }
+        textarea{
+            margin-top: 2rem;
+            height: 10rem;
+            width: 25rem;
+            resize: none;
+            padding: 0.3rem;
+            border-radius: 7px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: medium;
+        }
+        input{
+            $color: yellowgreen;
+            width: 12rem;
+            height: 2.3rem;
+            border-radius: 4px;
+            border: 1px solid $color;
+            margin: 1rem;
+            background-color: white;
+            transition: background-color 300ms ease;
+            &:hover{
+                background-color: $color;
+
+            }
+        }
+    }
+    a{ 
+        margin-top: 5rem;
+    }
+}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block HeadContent %}
+    <link rel="stylesheet" href="{% static 'stylesheets/build/gig_detail.css' %}" />
+{% endblock HeadContent %}
+{% block BodyContent %}
+<div class='wrapper'>
+    <div class="detail-container">
+    {% for detail in gig %}
+        <div class="title-wrapper">
+            <h1>{{detail.title}}</h1>
+        </div>
+        <div class="gigPic">
+            <img src="{{detail.picture.url}}" alt="{{detail.title}}" />
+        </div>
+        <div class="content">
+            Description: {{detail.description}}<br />
+            Created on: {{detail.createdAt}}<br />
+        </div>
+        <div class="contact">
+            e-mail: {{detail.email}}<br />
+            Phone Number: {{detail.phoneNumber}}<br />
+            Address: {{detail.address}}<br />
+        </div>
+    
+    {% endfor %}
+</div>
+</div> 
+<script src="{% static 'js/gig_detail.js' %}"></script>
+{% endblock BodyContent %}

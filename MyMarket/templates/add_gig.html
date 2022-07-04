@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% load static %} {% block HeadContent %}
+<link rel="stylesheet" href="{% static 'stylesheets/build/add_gig.css' %}" />
+{% endblock HeadContent %} {% block BodyContent %}
+<div class="wrapper">
+  <div class='content'>
+    <form action="{% url 'add-gig' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type = "text" placeholder="Title" name = "title"/><br />
+        <label for="category">Buisness Type: 
+          <select name="category"><br />
+            <option value="PC">Pest Control</option>
+            <option value="HC">Home Cleaners</option>
+            <option value="GL">Gardening and Landscaping</option>
+            <option value="LS">LockSmith</option>
+            <option value="EL">Electricians</option>
+            <option value="PL">Plumbing</option>
+            <option value="MO">Moving</option>
+            <option value="CO">Contractors</option>
+            <option value="OT">Other</option>
+          </select>
+        </label><br />
+        <textarea
+          placeholder="Tell us more about your buisness"
+          name = "description"
+          class = 'about'
+        ></textarea></br>
+        <div>
+            <label for="gigPic" id="image">Add a Picture</label>
+            <input type="file" id="gigPic" name="gigPic" accept="image/*" class='image-input'/>
+        </div>
+        <input type = "tel" placeholder="Phone Number" name = "phno" pattern="[0-9]{10}" /><br />
+        <input type = "email" placeholder="Email" name = "email"/><br />
+        <textarea
+          placeholder="Give us an address"
+          name = "address"
+          class = 'address'
+        ></textarea></br>
+        <input type = 'submit' class='submit' value='Add My Buisness'/>
+    </form>
+    <a href="{% url 'my-account' %}" class='cancel'>Cancel</a>
+  </div>
+</div>
+<script src="{% static 'js/add_gig.js' %}"></script>
+{% endblock BodyContent %}
